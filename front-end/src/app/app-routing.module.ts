@@ -5,27 +5,35 @@ import { SignupComponent } from './components/signup/signup.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { BeforeLoginService } from './Services/before-login.service';
+import { AfterLoginService } from './Services/after-login.service';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [BeforeLoginService],
   },
   {
     path: 'signup',
-    component: SignupComponent
+    component: SignupComponent,
+    canActivate: [BeforeLoginService],
   },
   {
     path: 'profile',
-    component: ProfileComponent
+    component: ProfileComponent,
+    canActivate: [AfterLoginService],
   },
   {
     path: 'request-password-reset',
-    component: RequestResetComponent
+    component: RequestResetComponent,
+    canActivate: [BeforeLoginService],
   },
   {
     path: 'response-password-reset',
-    component: ResponseResetComponent
+    component: ResponseResetComponent,
+    canActivate :[BeforeLoginService]
+
   },
 ];
 
